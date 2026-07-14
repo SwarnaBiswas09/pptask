@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+   
+<html>
+  <head> <title>From Handler</title></head>  
+<body>
+    <center>
+ <h1>Registration Form</h1>
+    </center>
+   
+ 
+<form onsubmit="handlesubmit()">
+    <label>Name:</label>
+    <input type="text" id="name">
+ 
+ 
+    <label>ID:</label>
+    <input type="text" id="Sid">
+ 
+    <label>Age:</label>
+    <input type="text" id="age">
+ 
+    <label>Department:</label>
+    <select id="Dept">
+<option value="">Select the Dept</option>
+<option value="CSE">--CSE--</option>
+<option value="EEE">--EEE--</option>
+<option value="BBA">--BAA--</option>
+<option value="DS">--DS--</option>
+    </select>
+ 
+<button type="submit">Submit</button>    
+</form>
+ 
+<script>
+function handlesubmit()
+{
+    var name= document.getElementById("name").value;
+    var id=document.getElementById("Sid").value;
+    var age=document.getElementById("age").value;
+    var dept=document.getElementById("Dept").value;
+ 
+ 
+    // Validation kora
+    // 1st validation cant be empty
+ 
+    if(name === "" || age ==="" || id=="" || dept==="" )
+{
+    alert("Please fill the form");
+    return false;
+}
+ if (id.length !==5 || isNaN(id))
+ {
+    alert("ID must be 5 digit");
+    return false;
+ }
+ 
+if(parseInt(age)>=25)
+ 
+{
+    alert("Age must be less then 25 ")
+    return false;
+}
+ alert ("Registration Complete \n"+
+ 
+ "Name: "+ name +"\n"+
+ "Age: "+ age +"\n"+
+ "Sid: "+ id +"\n"+
+ "Dept: "+ dept +"\n" );
+ 
+}
+ 
+</script>
+ 
+</body>
+ 
+ 
+  </html>
+ 

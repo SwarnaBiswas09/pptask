@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+</head>
+
+<body>
+
+<center>
+    <h1>Registration Form</h1>
+</center>
+
+<form onsubmit="return handleSubmit()">
+
+<label>Name:</label>
+<input type="text" id="name">
+
+<label>ID:</label>
+<input type="text" id="Sid">
+
+<label>Age:</label>
+<input type="text" id="age">
+
+<label>Department:</label>
+<select id="Dept">
+    <option value="">Select the Dept</option>
+    <option value="CSE">--CSE--</option>
+    <option value="EEE">--EEE--</option>
+    <option value="BBA">--BBA--</option>
+    <option value="DS">--DS--</option>
+</select>
+
+<label>Email:</label>
+<input type="text" id="email">
+
+<label>Mobile:</label>
+<input type="text" id="mobile">
+
+<button type="submit">Submit</button>
+
+</form>
+
+<br>
+
+<div id="error" style="color:red;"></div>
+
+<div id="result"></div>
+
+<script>
+
+function handleSubmit()
+{
+
+    var name = document.getElementById("name").value;
+    var id = document.getElementById("Sid").value;
+    var age = document.getElementById("age").value;
+    var dept = document.getElementById("Dept").value;
+    var email = document.getElementById("email").value;
+    var mobile = document.getElementById("mobile").value;
+
+    document.getElementById("error").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
+
+    // Empty Validation
+
+    if(name=="" || id=="" || age=="" || dept=="" || email=="" || mobile=="")
+    {
+        document.getElementById("error").innerHTML = "Please Fill All Fields.";
+        return false;
+    }
+
+    // Validation 1 : ID must be 5 digits
+
+    if(id.length!=5 || isNaN(id))
+    {
+        document.getElementById("error").innerHTML = "ID must be 5 digits.";
+        return false;
+    }
+
+    // Validation 2 : Age less than 25
+
+    if(parseInt(age)>=25)
+    {
+        document.getElementById("error").innerHTML = "Age must be less than 25.";
+        return false;
+    }
+
+    // Validation 3 : Email Format
+
+    var pattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if(!pattern.test(email))
+    {
+        document.getElementById("error").innerHTML = "Invalid Email Address.";
+        return false;
+    }
+
+    // Validation 4 : Mobile Number must be 11 digits
+
+    if(mobile.length!=11 || isNaN(mobile))
+    {
+        document.getElementById("error").innerHTML = "Mobile Number must be 11 digits.";
+        return false;
+    }
+
+    // Validation 5 : Name at least 3 characters
+
+    if(name.length<3)
+    {
+        document.getElementById("error").innerHTML = "Name must be at least 3 characters.";
+        return false;
+    }
+
+    // Validation 6 : Gmail only
+
+    if(email.indexOf("@gmail.com")==-1)
+    {
+        document.getElementById("error").innerHTML = "Email must be a Gmail Address.";
+        return false;
+    }
+
+    // Registration Complete
+
+    document.getElementById("result").innerHTML =
+    "<h3>Registration Complete</h3>" +
+    "Name : " + name + "<br>" +
+    "ID : " + id + "<br>" +
+    "Age : " + age + "<br>" +
+    "Department : " + dept + "<br>" +
+    "Email : " + email + "<br>" +
+    "Mobile : " + mobile;
+
+    return false;
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+/* Header */
+.header {
+    background-color: lightblue;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navigation Bar */
+.topnav {
+    background-color: black;
+    overflow: hidden;
+}
+
+/* Navigation Links */
+.topnav a {
+    
+    justify-content: space-between; 
+    align-items: right; 
+    color: white;
+    text-decoration: underline;
+    padding: 34px 36px;
+    display: inline-block;
+}
+
+/* Hover Effect */
+.topnav a:hover {
+    background-color: gray;
+}
+.container { 
+display: grid; 
+grid-template-columns: 1fr 2fr; 
+grid-template-rows: 2fr 1fr; 
+gap: 10px; 
+} 

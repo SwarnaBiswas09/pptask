@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Form Validation</title>
+<style>
+
+        body{
+
+            font-family: Arial, sans-serif;
+
+            background:#f2f2f2;
+
+        }
+
+        .container{
+
+            width:420px;
+
+            margin:auto;
+
+            margin-top:40px;
+
+            background:white;
+
+            padding:20px;
+
+            border-radius:10px;
+
+            box-shadow:0 0 10px gray;
+
+        }
+
+        input, select, textarea{
+
+            width:100%;
+
+            padding:8px;
+
+            margin-top:5px;
+
+            margin-bottom:10px;
+
+        }
+
+        button{
+
+            width:100%;
+
+            padding:10px;
+
+            font-size:16px;
+
+        }
+
+        .error{
+
+            color:red;
+
+            font-size:14px;
+
+        }
+
+        #result{
+
+            margin-top:20px;
+
+            font-weight:bold;
+
+            color:green;
+
+        }
+</style>
+</head>
+<body>
+<div class="container">
+<h2 align="center">Contact Form Validation</h2>
+<label>Name:</label>
+<input type="text" id="name">
+<div id="nameError" class="error"></div>
+<label>Email:</label>
+<input type="text" id="email">
+<div id="emailError" class="error"></div>
+<label>Student ID:</label>
+<input type="text" id="Sid">
+<div id="idError" class="error"></div>
+<label>Age:</label>
+<input type="text" id="age">
+<div id="ageError" class="error"></div>
+<label>Department:</label>
+<select id="Dept">
+<option value="">Select Department</option>
+<option>CSE</option>
+<option>EEE</option>
+<option>BBA</option>
+<option>English</option>
+</select>
+<div id="deptError" class="error"></div>
+<label>Message:</label>
+<textarea id="message" rows="5"></textarea>
+<div id="messageError" class="error"></div>
+<button onclick="validateForm()">Submit</button>
+<div id="result"></div>
+</div>
+<script>
+
+function validateForm(){
+
+    // Clear previous messages
+
+    document.getElementById("nameError").innerHTML="";
+
+    document.getElementById("emailError").innerHTML="";
+
+    document.getElementById("idError").innerHTML="";
+
+    document.getElementById("ageError").innerHTML="";
+
+    document.getElementById("deptError").innerHTML="";
+
+    document.getElementById("messageError").innerHTML="";
+
+    document.getElementById("result").innerHTML="";
+
+    let valid=true;
+
+    let name=document.getElementById("name").value.trim();
+
+    let email=document.getElementById("email").value.trim();
+
+    let sid=document.getElementById("Sid").value.trim();
+
+    let age=document.getElementById("age").value.trim();
+
+    let dept=document.getElementById("Dept").value;
+
+    let message=document.getElementById("message").value.trim();
+
+    // 1. Name Validation
+
+    let namePattern=/^[A-Za-z ]+$/;
+
+    if(!namePattern.test(name)){
+
+        document.getElementById("nameError").innerHTML="Name should contain only letters and spaces.";
+
+        valid=false;
+
+    }
+
+    // 2. Email Validation
+
+    let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailPattern.test(email)){
+
+        document.getElementById("emailError").innerHTML="Invalid Email Address.";
+
+        valid=false;
+
+    }
+
+// Student ID Validation 
+
+let idPattern = /^\d{2}-\d{5}-\d{1}$/;
+
+if(!idPattern.test(sid)){
+
+    document.getElementById("idError").innerHTML =
+
+    "Student ID must be in the format: xx-xxxxx-x";
+
+    valid = false;
+
+}
+
+    // 4. Age Validation
+
+    if(isNaN(age) || age<18 || age>60){
+
+        document.getElementById("ageError").innerHTML="Age must be between 18 and 60.";
+
+        valid=false;
+
+    }
+
+    // 5. Department Validation
+
+    if(dept==""){
+
+        document.getElementById("deptError").innerHTML="Please select a department.";
+
+        valid=false;
+
+    }
+
+    // 6. Message Validation
+
+    if(message.length<10){
+
+        document.getElementById("messageError").innerHTML="Message must contain at least 10 characters.";
+
+        valid=false;
+
+    }
+
+    // Success Message
+
+    if(valid){
+
+        document.getElementById("result").innerHTML=
+
+        "<h3>Registration Successful!</h3>" +
+
+        "<p><b>Name:</b> "+name+"</p>" +
+
+        "<p><b>Email:</b> "+email+"</p>" +
+
+        "<p><b>Student ID:</b> "+sid+"</p>" +
+
+        "<p><b>Age:</b> "+age+"</p>" +
+
+        "<p><b>Department:</b> "+dept+"</p>" +
+
+        "<p><b>Message:</b> "+message+"</p>";
+
+    }
+
+}
+</script>
+</body>
+</html>
+ 
